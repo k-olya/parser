@@ -60,7 +60,7 @@ req(url, (err, res, b) => {
         'b': el => `**${c(el)}**`,
         'strong': el => `**${c(el)}**`,
         'img': el => `![${$(el).attr('alt') || 'image'}](${$(el).attr('src')})\n`,
-        'table': el => `${t($(el).find('tr').toArray().map((v, k) => md(v)))}\n\n`,
+        'table': el => `${t($(el).find('tr').toArray().map((v, k) => md(v)))}|\n\n`,
         'th': el => `| ${c(el)} `,
         'td': el => `| ${c(el)} `,
         // this one returns an array
