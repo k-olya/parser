@@ -1,0 +1,17 @@
+{
+  "name": "html-to-markdown",
+  "version": "1.0.0",
+  "description": "Download html articles and convert them to markdown",
+  "main": "app.js",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "lodash": "^4.17.11",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}
