@@ -1194,7 +1194,7 @@ Datetime and duration names:
 | \`second           | \`s                 | \`S      |
 | \`millisecond      | \`t                 | \`T      |
 | \`microsecond      | \`u                 | \`U      |
-| \`nanosecond       | \`v                 | \`V      
+| \`nanosecond       | \`v                 | \`V      |
 
 Convert to/from/between datetimes and durations using `$`. It takes a name or string (short version only):
 
