@@ -5,9 +5,9 @@ Force the monadic case by applying a `:` suffix.
 Force the dyadic case by putting the verb in parentheses:
 
 ```q
-@1
+ @1
 `i
-(@)1
+ (@)1
 1@
 ```
 
@@ -16,25 +16,25 @@ Monadic and dyadic versions of a character are **different verbs** - it's not ju
 For example, with a bracket call with one argument, the monadic verb will work fine, while the dyadic verb will project:
 
 ```q
-@:["abc"]
+ @:["abc"]
 `C
-@["abc"]
+ @["abc"]
 "abc"@
 ```
 
 Project over the first argument by omitting it entirely:
 
 ```q
-@[;1] "abc"
+ @[;1] "abc"
 "b"
 ```
 
 Triadic versions of a verb are the same as the dyadic version (except for [`cond`](#cond)):
 
 ```q
-(?) . ("abcb"; "b")
+ (?) . ("abcb"; "b")
 1
-(?) . ("abcb"; 1; "d")
+ (?) . ("abcb"; 1; "d")
 "adbcb"
 ```
 
@@ -61,55 +61,55 @@ f: {{x*x} reusedtempdata}
 ### Flip `#`
 
 ```q
-("#";"##")
-"#" 
-"##"  
+  ("#";"##")
+"#"
+"##"
 
-+("#";"##")
+ +("#";"##")
 ##
 ##
 
-+("##";"###")
+ +("##";"###")
 ##
 ##
-#
+ #
 
-*++("##";"###")
+ *++("##";"###")
 "## "
 
-+(!1;!2)
-0 0 
+ +(!1;!2)
+0 0
 Ø 1
 ```
 
 ### Up `<`
 
 ```q
-< "abracadabra"
+ < "abracadabra"
 0 3 5 7 10 1 8 4 6 2 9
-s@<s: "abracadabra"
+ s@<s: "abracadabra"
 "aaaaabbcdrr"
 ```
 
 ### Group `=`
 
-With a list, get back the indices at which each unique element appears: 
+With a list, get back the indices at which each unique element appears:
 
 ```q
-="abracadabra"
+ ="abracadabra"
 a|0 3 5 7 10
-b|1 8       
-c|,4        
-d|,6        
+b|1 8
+c|,4
+d|,6
 r|2 9
 ```
 
 ### Enumerate `!`
 
 ```q
-!3
+ !3
 0 1 2
-!2 3
+ !2 3
 0 0 0 1 1 1
 0 1 2 0 1 2
 ```
@@ -117,7 +117,7 @@ r|2 9
 With a negative integer argument, generate an identity matrix:
 
 ```q
-!-3
+ !-3
 1 0 0
 0 1 0
 0 0 1
@@ -126,77 +126,77 @@ With a negative integer argument, generate an identity matrix:
 ### Key `!`
 
 ```q
-! {a:1;b:2}
+ ! {a:1;b:2}
 `a`b
 ```
 
 ### Except `^`
 
 ```q
-(!4)^1
+ (!4)^1
 0 2 3
-(!4)^1 3
+ (!4)^1 3
 0 2
-"abracadabra" ^ "bc"
+ "abracadabra" ^ "bc"
 "araadara"
 ```
 
 ### Sort `^`
 
 ```q
-:: l: rand 4
+ :: l: rand 4
 0.5594068 0.1751217 0.3652149 0.5086234
-^l
+ ^l
 0.1751217 0.3652149 0.5086234 0.5594068
 ```
 
 ### Take `#`
 
 ```q
-3#"abracadabra"
+ 3#"abracadabra"
 "abr"
 ```
 
 Given a filter function (returning `1`s and `0`s only):
 
 ```q
-(2 mod)#!9
+ (2 mod)#!9
 1 3 5 7
 ```
 
 ### Drop `_`
 
 ```q
-4_"abracadabra"
+ 4_"abracadabra"
 "cadabra"
 ```
 
 ### Floor `_`
 
 ```q
-_ 1.23 -1.23 0
+ _ 1.23 -1.23 0
 1 -2 0
 ```
 
 ### Find `?`
 
 ```q
-2 3 1 4 0 ? 3
+ 2 3 1 4 0 ? 3
 1
-2 3 1 4 0 ? 3 1 0
+ 2 3 1 4 0 ? 3 1 0
 1 2 4
 ```
 
 ### Distinct `?`
 
 ```q
-? "abracadabra"
+ ? "abracadabra"
 "abrcd"
-? ("hi"; 1 2 3; `a`b; 0; "hi"; `a`b; 1 2; 0)
-"hi" 
+ ? ("hi"; 1 2 3; `a`b; 0; "hi"; `a`b; 1 2; 0)
+"hi"
 1 2 3
-`a`b 
-0    
+`a`b
+0
 1 2
 ```
 
@@ -209,11 +209,11 @@ There should be no spaces between an adverb and the expression on its left-hand 
 Adverbs can be called in similar ways to verbs:
 
 ```q
-+/ 1 2 3
+ +/ 1 2 3
 6
-/[+] 1 2 3
+ /[+] 1 2 3
 6
-(/ (+)) 1 2 3
+ (/ (+)) 1 2 3
 6
 ```
 
@@ -222,9 +222,9 @@ Adverbs can be called in similar ways to verbs:
 Make a function apply to each element of its input lists, rather than the list itself.
 
 ```q
-"~" , "abc"
+ "~" , "abc"
 "~abc"
-"~" ,' "abc"
+ "~" ,' "abc"
 ~a
 ~b
 ~c
@@ -233,11 +233,11 @@ Make a function apply to each element of its input lists, rather than the list i
 'Each' will apply to pairings of its input lists:
 
 ```q
-"ab" ,' "cd"
+ "ab" ,' "cd"
 ac
 bd
 
-{x,y,z}'["ab";"cd";"ef"]
+ {x,y,z}'["ab";"cd";"ef"]
 ace
 bdf
 ```
@@ -247,14 +247,14 @@ bdf
 n f/x
 
 ```q
-3 {x+1}/10
+ 3 {x+1}/10
 13
 ```
 
 p f/x
 
 ```q
-{4>#x} {x,"k"}/"o"
+ {4>#x} {x,"k"}/"o"
 "okkk"
 ```
 
@@ -263,17 +263,17 @@ p f/x
 n f\x
 
 ```q
-3 {x+1}\10
+ 3 {x+1}\10
 10 11 12 13
 ```
 
 p f\x
 
 ```q
-{4>#x} {x,"k"}\"o"
-"o"   
-"ok"  
-"okk" 
+ {4>#x} {x,"k"}\"o"
+"o"
+"ok"
+"okk"
 "okkk"
 ```
 
@@ -282,16 +282,16 @@ p f\x
 The null chosen for the first pairing is of the type of the first member of the list.
 
 ```q
-{y,x}': !3
+ {y,x}': !3
 Ø 0
-0 1 
-1 2  
-{y,x}': 1.0 2.1 4.7
-ø 1   
-1 2.1  
+0 1
+1 2
+ {y,x}': 1.0 2.1 4.7
+ø 1
+1 2.1
 2.1 4.7
-{y,x}': ("a";1;`ok)
-" a"   
+ {y,x}': ("a";1;`ok)
+" a"
 ("a";1)
 (1;`ok)
 ```
@@ -301,10 +301,10 @@ The null chosen for the first pairing is of the type of the first member of the 
 Compare to each:
 
 ```q
-"ab" ,' "cd"
+ "ab" ,' "cd"
 ac
 bd
-"ab" ,/: "cd"
+ "ab" ,/: "cd"
 abc
 abd
 ```
@@ -312,7 +312,7 @@ abd
 ### Each left `\:`
 
 ```q
-"ab" ,\: "cd"
+ "ab" ,\: "cd"
 acd
 bcd
 ```
@@ -324,28 +324,28 @@ The following work with **lists of strings**.
 Prepend the separator to `/:`, [without a space in between](https://groups.google.com/d/msg/shaktidb/FRNnOgPgZWA/so4euXj7AAAJ).
 
 ```q
-"-"/: ("la";"li";"lu";"le";"lo")
+ "-"/: ("la";"li";"lu";"le";"lo")
 "la-li-lu-le-lo"
 ```
 
 With empty symbol as 'separator', appends a newline to each string and joins. (This is also known as 'sS' or 'string from String', with capitalisation following the k7 convention of lower for atom, upper for list of atoms of same type).
 
 ```q
-`/: ("ab";"cd")
+ `/: ("ab";"cd")
 "ab\ncd\n"
 ```
 
 With three characters instead of just a separator, prepends/appends the first and last:
 
 ```q
-"(;)"/: (,:' "abcd")
+ "(;)"/: (,:' "abcd")
 "(a;b;c;d)"
 ```
 
 That means 'join' can't be used for multi-character separators, but you can always do this ([source](https://groups.google.com/d/msg/shaktidb/ttIdJiWx9xI/hiTjuX7_BAAJ)):
 
 ```q
-{y,x,z}[", "]/$`ab`cd`ef
+ {y,x,z}[", "]/$`ab`cd`ef
 "ab, cd, ef"
 ```
 
@@ -354,7 +354,7 @@ That means 'join' can't be used for multi-character separators, but you can alwa
 Prepend the separator to `\:`, [without a space in between](https://groups.google.com/d/msg/shaktidb/FRNnOgPgZWA/so4euXj7AAAJ).
 
 ```q
-"-"\: "la-li-lu-le-lo"
+ "-"\: "la-li-lu-le-lo"
 la
 li
 lu
@@ -365,10 +365,10 @@ lo
 With empty symbol as 'separator', splits on newlines, including (if present) at the end of the last word. (This is also known as 'Ss' or 'String from string'.)
 
 ```q
-`\: "ab\ncd\n"
+ `\: "ab\ncd\n"
 ab
 cd
-`\: "ab\ncd"
+ `\: "ab\ncd"
 ab
 cd
 ```
@@ -380,14 +380,14 @@ Mnemonic tip: read 'sv' in k evaluation order, ie right to left.
 Convert a vector of numbers from a specified base into base 10:
 
 ```q
-2/: 1 0 1 0
+ 2/: 1 0 1 0
 10
 ```
 
 You can also turn a vector in (year, month, day) form into a k date:
 
 ```q
-`/: 2019 5 4
+ `/: 2019 5 4
 2019-05-04
 ```
 
@@ -398,16 +398,16 @@ Mnemonic tip: read 'vs' in k evaluation order, ie right to left.
 Convert a number from base 10 into a specified base:
 
 ```q
-10\: 1000
+ 10\: 1000
 1 0 0 0
-2\: 10
+ 2\: 10
 1 0 1 0
 ```
 
 You can also turn a k date into a (year, month, day) vector:
 
 ```q
-`\: .z.d
+ `\: .z.d
 2019 5 4
 ```
 
@@ -422,15 +422,15 @@ All of `1.0`, `.5`, `1f` are valid float literals.
 `` (2;3.4;`c) `` (or any list of atoms, functions etc) can also be written `` 2,3.4,`c ``:
 
 ```q
-(2;3.4;`c)~2,3.4,`c
+ (2;3.4;`c)~2,3.4,`c
 1
 ```
 
 But it breaks down when you include nested lists such as strings:
 
 ```q
-2,"hi",`c
-2  
+ 2,"hi",`c
+2
 "h"
 "i"
 `c
@@ -442,16 +442,16 @@ Functions can call themselves by using their own name in their definition. Naive
 
 ```q
 factorial: {$[x<2;1;x*factorial[x-1]]}
-factorial 4
+ factorial 4
 24
 ```
 
 A function with implicit `xyz` args can be distinguished from a dict by ensuring the body does not start with an assignment:
 
 ```q
-@{a:1;a*x}
+ @{a:1;a*x}
 value error: a
-@{;a:1;a*x}   / in scripts, can also be a newline instead of a semicolon
+ @{;a:1;a*x}   / in scripts, can also be a newline instead of a semicolon
 `1
 ```
 
@@ -460,10 +460,10 @@ value error: a
 Exprs can be executed on tables, eg:
 
 ```q
-t: +`a`b!(1 2 3;4 5 6)
-t :a>1
+ t: +`a`b!(1 2 3;4 5 6)
+ t :a>1
 0 1 1
-t@&t :a>1
+ t@&t :a>1
 a b
 - -
 2 5
@@ -477,33 +477,33 @@ Some expr functionality is NYI. For more info, see [this forum post](https://gro
 ### `in`
 
 ```q
-`c`d in `a`b`c
+ `c`d in `a`b`c
 1 0
 
-"abcz" in "abracadabra"
+ "abcz" in "abracadabra"
 1 1 1 0
 
-2 10 in !9
+ 2 10 in !9
 1 0
 ```
 
 ### `within`
 
 ```q
-`p within `A`z
+ `p within `A`z
 1
-`p within `A`Z
+ `p within `A`Z
 0
 ```
 
 Includes lower bound, excludes upper bound:
 
 ```q
-1 within 1 2
+ 1 within 1 2
 1
-2 within 1 2
+ 2 within 1 2
 0
-1 2 3 within 1 2 3
+ 1 2 3 within 1 2 3
 0 1 0
 ```
 
@@ -512,7 +512,7 @@ Includes lower bound, excludes upper bound:
 Counts of each item in the list.
 
 ```q
-freq "alibaba"
+ freq "alibaba"
 a|3
 b|2
 i|1
@@ -522,7 +522,7 @@ l|1
 ### `find`
 
 ```q
-"abracadabra" find "bra"
+ "abracadabra" find "bra"
 1 3
 8 3
 ```
@@ -530,14 +530,14 @@ l|1
 ### Sort ascending `asc`
 
 ```q
-asc "abracadabra"
+ asc "abracadabra"
 "aaaaabbcdrr"
 ```
 
 ### Sort descending `dsc`
 
 ```q
-dsc "abracadabra"
+ dsc "abracadabra"
 "rrdcbbaaaaa"
 ```
 
@@ -546,9 +546,9 @@ dsc "abracadabra"
 ### Absolute value `abs`
 
 ```q
-abs 1.23
+ abs 1.23
 1.23
-abs -1.23
+ abs -1.23
 1.23
 ```
 
@@ -557,7 +557,7 @@ abs -1.23
 Generates permutation indices.
 
 ```q
-prm 3
+ prm 3
 0 1 2
 1 0 2
 1 2 0
@@ -571,20 +571,20 @@ prm 3
 Monadic: natural logarithm, ie the power you'd need to raise *e* by to get `x`.
 
 ```q
-log 2
+ log 2
 0.6931472
-log (exp 1)
+ log (exp 1)
 1f
-(exp 1) exp (log 2)
+ (exp 1) exp (log 2)
 2f
 ```
 
 Dyadic: logarithm, ie the number you'd need to raise the left number to to get the right number.
 
 ```q
-2 log 2
+ 2 log 2
 1f
-2 log 4
+ 2 log 4
 2f
 ```
 
@@ -593,38 +593,38 @@ Dyadic: logarithm, ie the number you'd need to raise the left number to to get t
 Monadic: *e* to the power of `x`.
 
 ```q
-exp 1
+ exp 1
 2.718282
-exp 2
+ exp 2
 7.389056
-(exp 1) exp 2
+ (exp 1) exp 2
 7.389056
 ```
 
 Dyadic: left to the power of right.
 
 ```q
-2 exp 4
+ 2 exp 4
 16f
-2 exp -1
+ 2 exp -1
 0.5
 ```
 
 ### Random `[n]rand`
 
 ```q
-rand 3
+ rand 3
 0.7502717 0.8107001 0.8145892
-3 rand 10
+ 3 rand 10
 7 3 9
 ```
 
 ### `mod`
 
 ```q
-2 mod !10
-0 1 0 1 0 1 0 1 0 1            
-2 3 4 mod 3
+ 2 mod !10
+0 1 0 1 0 1 0 1 0 1
+ 2 3 4 mod 3
 1 0 3
 ```
 
@@ -637,11 +637,11 @@ The value in the middle if the data was sorted.
 If the count of the data is even, return the value on the right of the middle.
 
 ```q
-med !3
+ med !3
 1
-med !4
+ med !4
 2
-med 2 3 1
+ med 2 3 1
 2
 ```
 
@@ -664,13 +664,13 @@ t~v
 
 / Break row-wise over multiple lines:
 w: ({a:1;b:2}
-{a:3;b:4})
+    {a:3;b:4})
 
 t~w
 
 / Break row-wise (condensed row format) over multiple lines:
 x: `a`b!/:(1 2
-3 4)
+           3 4)
 
 t~x
 ```
@@ -687,7 +687,7 @@ Key tables are dictionaries where the rows of one table map to the rows of anoth
 
 ```q
 k: ({a:1;c:3}
-{a:4;c:6})
+    {a:4;c:6})
 v: ({b:2};{b:5})
 kt: k!v
 kt   / (+{a:1 4;c:3 6})!+{b:2 5}
@@ -697,9 +697,9 @@ kt   / (+{a:1 4;c:3 6})!+{b:2 5}
 You can also use `key` to set the key columns after creation:
 
 ```q
-t: ({a:1;b:2;c:3};{a:4;b:5;c:6})
-tk: `a`c key t
-tk~kt  / 1
+ t: ({a:1;b:2;c:3};{a:4;b:5;c:6})
+ tk: `a`c key t
+ tk~kt  / 1
 ```
 
 Access rows of the value table by indexing into the keytable:
@@ -711,8 +711,8 @@ kt[{a:4;c:6}]  / {b:5}
 ### KSQL
 
 ```q
-t: ({a:1;b:2};{a:3;b:4})
-update b:a*2 from t
+ t: ({a:1;b:2};{a:3;b:4})
+ update b:a*2 from t
 a b
 - -
 1 2
@@ -722,7 +722,7 @@ a b
 Note t is not updated in-place:
 
 ```q
-t
+ t
 a b
 - -
 1 2
@@ -732,20 +732,20 @@ a b
 Use `by` to group rows or aggregations:
 
 ```q
-:: t: ({a:1;b:2;c:3};{a:2;b:3;c:4};{a:1;b:4;c:5})
+ :: t: ({a:1;b:2;c:3};{a:2;b:3;c:4};{a:1;b:4;c:5})
 a b c
 - - -
 1 2 3
 2 3 4
 1 4 5
 
-select by a from t
-a|                    
+ select by a from t
+a|
 -|--------------------
 1|+{a:1 1;b:2 4;c:3 5}
 2|,{a:2;b:3;c:4}
 
-select sum b by a from t
+ select sum b by a from t
 a|b
 -|-
 1|6
@@ -757,7 +757,7 @@ a|b
 Access any shell command by putting a `\` in front of it:
 
 ```q
-\seq 3
+ \seq 3
 1
 2
 3
@@ -766,15 +766,15 @@ Access any shell command by putting a `\` in front of it:
 ### List files `\lf`
 
 ```q
-\lf
-afile.txt       
+ \lf
+afile.txt
 yet another file
 ```
 
 ### List character counts `\lc`
 
 ```q
-\lc
+ \lc
 afile.txt       |29
 yet another file|50
 ```
@@ -782,7 +782,7 @@ yet another file|50
 You can't assign the result of `\lc` directly (ie `a: \lc` doesn't work). But you *can* capture its output and see that it is in fact a dictionary:
 
 ```q
-{(x;@x)} @ . "\\lc"
+ {(x;@x)} @ . "\\lc"
 ("afile.txt";"yet another file")!29 50j
 `a
 ```
@@ -790,7 +790,7 @@ You can't assign the result of `\lc` directly (ie `a: \lc` doesn't work). But yo
 ### List line counts `\ll`
 
 ```q
-\ll
+ \ll
 afile.txt       |1
 yet another file|3
 ```
@@ -804,113 +804,113 @@ The official help included in the k binary. It's the navigation to this site!
 As at 2019-05-17:
 
 ```q
-20190524                                                  
-FIX                                                       
-,/,(:)                                                    
+20190524
+FIX
+,/,(:)
 
-20190522                                                  
-?2 3 5                                                    
-^2 3 5                                                    
-FIX                                                       
-\ll                                                       
-\lc                                                       
+20190522
+?2 3 5
+^2 3 5
+FIX
+\ll
+\lc
 
-20190517                                                  
-FIX                                                       
+20190517
+FIX
 left join(missing) (+`a`b!(2 3 4;4 5 6)),(+`a!2 4)!+`b!7 8
 
-20190508                                                  
-+("**";"***") /flip pad                                   
-(0>)+/0 1 -1 -1 0 1 1 1 / early exit                      
+20190508
++("**";"***") /flip pad
+(0>)+/0 1 -1 -1 0 1 1 1 / early exit
 
-20190506                                                  
-recursion                                                 
-r:{[a;b;f;g;x]$[x~a;b;f[x]r[a;b;f;g]g x]}                 
-r[1;1;*;-1+]4                                             
-1 1(*;-1+)/4                                              
-(3;,2)({y,1_&&/x#'!:'y};1+_sqrt)/100                      
+20190506
+recursion
+r:{[a;b;f;g;x]$[x~a;b;f[x]r[a;b;f;g]g x]}
+r[1;1;*;-1+]4
+1 1(*;-1+)/4
+(3;,2)({y,1_&&/x#'!:'y};1+_sqrt)/100
 
-NUC                                                       
-^x /sort                                                  
-=x /sortkey                                               
-PRF                                                       
-n^                                                        
-!n                                                        
-*|:  /composition                                         
-,/+: /composition                                         
+NUC
+^x /sort
+=x /sortkey
+PRF
+n^
+!n
+*|:  /composition
+,/+: /composition
 
-20190504	                                                 
-`aes?`aes@"kei" /encrypt&xdecrypt 4GB per second          
-freq"alibababa" /frequency histogram 1Billion per second  
+20190504
+`aes?`aes@"kei" /encrypt&xdecrypt 4GB per second
+freq"alibababa" /frequency histogram 1Billion per second
 
-20190503                                                  
-FIX                                                       
-select #n by b from +`b!2 2 3 4                           
+20190503
+FIX
+select #n by b from +`b!2 2 3 4
 
-20190501                                                  
-v:2 3                                                     
-@[`v;0;7]                                                 
-PRF                                                       
-n^i <x ?x x?y                                             
+20190501
+v:2 3
+@[`v;0;7]
+PRF
+n^i <x ?x x?y
 
-20190430                                                  
-x^y rank sensitive                                        
-f#d domain error if f missing                             
+20190430
+x^y rank sensitive
+f#d domain error if f missing
 
-20190428                                                  
-"Ds"$.z.S        / date,second                            
-1970Y+`t$1.56e12 / unix epoch                             
+20190428
+"Ds"$.z.S        / date,second
+1970Y+`t$1.56e12 / unix epoch
 
-20190427                                                  
-3000000000 (goes to j)                                    
-`f$Ø                                                     
-12h                                                       
-`p?`p"{a:1;b:2 3}"                                        
+20190427
+3000000000 (goes to j)
+`f$Ø
+12h
+`p?`p"{a:1;b:2 3}"
 
-20190426                                                  
-u:1970Y;T:.z.T;t:T-u;u+t                                  
-\gr "write " k.txt                                        
+20190426
+u:1970Y;T:.z.T;t:T-u;u+t
+\gr "write " k.txt
 
-20190425                                                  
-\t  calibrate                                             
-`j? whitespace                                            
+20190425
+\t  calibrate
+`j? whitespace
 
-20190421                                                  
-`D$"20190320"                                             
-NUC                                                       
-`/:`\:.z.d                                                
-FIX                                                       
-"\n"                                                      
+20190421
+`D$"20190320"
+NUC
+`/:`\:.z.d
+FIX
+"\n"
 
-20190420                                                  
-`j?`j .z.T                                                
-`j?"123"                                                  
-{ v:1};{"v":1}                                            
-K:key k:key`k1     / public private                       
-K key k key"hi"    / verify sign                          
-4 7 mod x                                                 
-FIX                                                       
-`a#t                                                      
+20190420
+`j?`j .z.T
+`j?"123"
+{ v:1};{"v":1}
+K:key k:key`k1     / public private
+K key k key"hi"    / verify sign
+4 7 mod x
+FIX
+`a#t
 
-20190418                                                  
-{a:2}   instead of [a:2]                                  
-mod/div instead of n! -n!  7 mod .z.d                     
-[n]rand instead of n?                                     
-"math*"#."\\h"                                            
-\gr math k.txt (200 times faster than \grep math k.txt)   
+20190418
+{a:2}   instead of [a:2]
+mod/div instead of n! -n!  7 mod .z.d
+[n]rand instead of n?
+"math*"#."\\h"
+\gr math k.txt (200 times faster than \grep math k.txt)
 
-20190415                                                  
-\h help                                                   
-\l changelog                                              
-!-n identity matrix                                       
-. x eval                                                  
-`/: sS(string from String)                                
-`\: Ss(String from string)                                
-`ascii`utf8`print ".."                                    
-FIX                                                       
--':2 3.4                                                  
-.z.T-.z.T                                                 
-sum !3  
+20190415
+\h help
+\l changelog
+!-n identity matrix
+. x eval
+`/: sS(string from String)
+`\: Ss(String from string)
+`ascii`utf8`print ".."
+FIX
+-':2 3.4
+.z.T-.z.T
+sum !3
 ```
 
 ## IO and IPC
@@ -927,9 +927,9 @@ Given the following in `test.csv`:
 We can read it in as lists of type `inf` respectively and separator `,`:
 
 ```q
-("inf";",")0:"test.csv"
-1 3         
-`ABC`DEF    
+ ("inf";",")0:"test.csv"
+1 3
+`ABC`DEF
 1.23 4567.89
 ```
 
@@ -938,19 +938,19 @@ The filename can be given as `` `test.csv `` instead of `"test.csv"` (one char s
 We can also write lists of strings to a file (verify output using a text editor):
 
 ```q
-"test.txt" 0: ("hello";"world")
+ "test.txt" 0: ("hello";"world")
 ```
 
 And that includes saving tables to CSV, if we first convert the table to a list of strings:
 
 ```q
-"test.csv" 0: `csv @ +{a:1 2; b:3 4}
+ "test.csv" 0: `csv @ +{a:1 2; b:3 4}
 ```
 
 You can also use `0:` to deserialise in-memory lists of strings with a common separator. [Arthur's example](https://groups.google.com/d/msg/shaktidb/vE4ffjndxik/rYF6K78oBQAJ):
 
 ```q
-("ii";"|")0:("2|3";"3|4";"4|5")
+  ("ii";"|")0:("2|3";"3|4";"4|5")
 2 3 4
 3 4 5
 ```
@@ -960,8 +960,8 @@ Keep in mind it's reading the data into columns, not rows. The first row of the 
 ### Read/write bytes `1:`
 
 ```q
-"testfile" 1: 0x0123456789abcdef
-1: "testfile"
+ "testfile" 1: 0x0123456789abcdef
+ 1: "testfile"
 0x0123456789abcdef
 ```
 
@@ -976,14 +976,14 @@ $ hexdump -C testfile
 And to break down what's happening in the 'prompt' example from the official tutorial, ie:
 
 ```q
-name: 1: ("" 1: "What is your name? ")
+ name: 1: ("" 1: "What is your name? ")
 What is your name? Me
-name
+ name
 "Me"
 ```
 
-- Read from stdin: `1: ""` or `` 1: ` `` 
-- Write to stdout: `"" 1: "string"` or `` ` 1: "string" `` 
+- Read from stdin: `1: ""` or `` 1: ` ``
+- Write to stdout: `"" 1: "string"` or `` ` 1: "string" ``
 - `x 1: y` returns `x` ([source](https://groups.google.com/d/msg/shaktidb/DmV2eoSEGHU/eEEOKfjCBQAJ))
 
 On the last point: if just writing to stdout, make sure to put a semicolon at the end to suppress outputting the characters on the left of `1:` to the REPL.
@@ -991,15 +991,15 @@ On the last point: if just writing to stdout, make sure to put a semicolon at th
 ### Read/write data `2:`
 
 ```q
-"testfile" 2: (1 2 3 4)
-2: "testfile"
+ "testfile" 2: (1 2 3 4)
+ 2: "testfile"
 1 2 3 4
 ```
 
 You can see what `testfile` looks like in bytes with `1:`:
 
 ```q
-1: "testfile"
+ 1: "testfile"
 0x000000070400000001000000020000000300000004000000
 ```
 
@@ -1011,9 +1011,9 @@ Then in another k process, set up a connection to the first k process, send it c
 
 ```q
 2019-04-18 15:45:55 2core 1gb avx2 © shakti l2.0 test
-conn: 3: 1234
-conn 4: "life: 42"
-conn 4: "life"
+ conn: 3: 1234
+ conn 4: "life: 42"
+ conn 4: "life"
 42
 ```
 
@@ -1024,24 +1024,24 @@ conn 4: "life"
 Get all rows of `t` where `c` is true.
 
 ```q
-t: +`a`b!(1 2 3;4 5 6)
-#[t; :a>1]
+ t: +`a`b!(1 2 3;4 5 6)
+ #[t; :a>1]
 a b
 - -
 2 5
 3 6
 
-/ But since there are just two arguments, we can use # as an infix verb:
+ / But since there are just two arguments, we can use # as an infix verb:
 
-t # :a>1
+ t # :a>1
 a b
 - -
 2 5
 3 6
 
-t # :(a>1)&(b<6)
+ t # :(a>1)&(b<6)
 ,{a:2;b:5}
-t # :(a>1)&(b<5)
+ t # :(a>1)&(b<5)
 +{a:!0;b:!0}
 ```
 
@@ -1050,8 +1050,8 @@ t # :(a>1)&(b<5)
 Via [Arthur](https://groups.google.com/d/msg/shaktidb/77qVfIc5ecU/eSRy8izkAQAJ):
 
 ```q
-t:+`b!2 3
-_[t;();`b! :b+1]
+ t:+`b!2 3
+ _[t;();`b! :b+1]
 b
 -
 3
@@ -1065,18 +1065,18 @@ Insert `y` into `x` at index `i`.
 If an element was at that index before, move it right.
 
 ```q
-?[!3;2;`abc]
-0   
-1   
+ ?[!3;2;`abc]
+0
+1
 `abc
-2  
-?[!3;2;"abc"]
-0  
-1  
+2
+ ?[!3;2;"abc"]
+0
+1
 "a"
 "b"
 "c"
-2  
+2
 
 ```
 
@@ -1088,13 +1088,13 @@ To do the update in-place, use the data's name symbol instead of the name direct
 
 ```q
 v:!3
-@[v;1;7]
+ @[v;1;7]
 0 7 2
-v
+ v
 !3   / original assignment unchanged
-@[`v;1;7]
+ @[`v;1;7]
 `v
-v
+ v
 0 7 2
 ```
 
@@ -1103,35 +1103,35 @@ v
 If the true expression is returned, the false expression never executes (and vice versa):
 
 ```q
-a:1;b:1
-$[1;a+:1;b+:1]; (a;b)
+ a:1;b:1
+ $[1;a+:1;b+:1]; (a;b)
 2 1
-$[0;a+:1;b+:1]; (a;b)
+ $[0;a+:1;b+:1]; (a;b)
 2 2
 ```
 
 [Unlike other triadics](#Verb), triadic `$` is not the same as dyadic `$`:
 
 ```q
-($) . (`n; "a")
+ ($) . (`n; "a")
 `a
+ ($) . (1; "a"; "b")
 ($) . (1; "a"; "b")
-($) . (1; "a"; "b")
-^
+    ^
 nyi error
 ```
 
 Simulate a vector cond:
 
 ```q
-{$[x;y;z]}'[1 0 1; "abc"; "def"] 
+ {$[x;y;z]}'[1 0 1; "abc"; "def"]
 "aec"
 ```
 
 Or (modified version of [Arthur's](https://groups.google.com/d/msg/shaktidb/6JLpGPE-bfM/mlAzxcrgAQAJ) - no `$` needed!):
 
 ```q
-{(+(z;y))@'x}[1 0 1;"abc";"def"]
+ {(+(z;y))@'x}[1 0 1;"abc";"def"]
 "aec"
 ```
 
@@ -1142,9 +1142,9 @@ Or (modified version of [Arthur's](https://groups.google.com/d/msg/shaktidb/6JLp
 Are all characters in the string in the [ASCII set](https://en.wikipedia.org/wiki/ASCII#Character_set)?
 
 ```q
-`ascii @ "123"
+ `ascii @ "123"
 1
-`ascii @ "∞"
+ `ascii @ "∞"
 0
 ```
 
@@ -1153,7 +1153,7 @@ Are all characters in the string in the [ASCII set](https://en.wikipedia.org/wik
 A datetime looks like this:
 
 ```q
-.z.T
+ .z.T
 2019-05-04T13:13:12.313
 ```
 
@@ -1162,23 +1162,23 @@ Datetime literals are [designed](https://groups.google.com/forum/#!topic/shaktid
 Dates start from `2024-01-01`:
 
 ```q
-`D $ 0
+ `D $ 0
 2024-01-01
 ```
 
 '0' is Monday. Get the day of the week with `7 mod`.
 
 ```q
-`Mon`Tue`Wed`Thu`Fri`Sat`Sun @ 7 mod 2024-01-01
+ `Mon`Tue`Wed`Thu`Fri`Sat`Sun @ 7 mod 2024-01-01
 `Mon
 ```
 
 You can also use duration literals (requires short-form code), and do date arithmetic:
 
 ```q
-.z.d
+ .z.d
 2019-05-04
-.z.d + 2m
+ .z.d + 2m
 2019-07-04
 ```
 
@@ -1199,11 +1199,11 @@ Datetime and duration names:
 Convert to/from/between datetimes and durations using `$`. It takes a name or string (short version only):
 
 ```q
-`year $ .z.t
+ `year $ .z.t
 2019y
-`y  $ 2019
+ `y  $ 2019
 2019y
-"y" $ 2019
+ "y" $ 2019
 2019y
 ```
 
@@ -1232,16 +1232,16 @@ Convert to with `` `x@data `` or `` `x data ``, where `` `x `` is the relevant n
 #### Parse `` `p ``
 
 ```q
-`p @ "5*!3"
-*     
-5     
+ `p @ "5*!3"
+*
+5
 (!:;3)
 ```
 
 A parse tree can be executed with `.`:
 
 ```q
-. `p @ "5*!3"
+ . `p @ "5*!3"
 0 5 10
 ```
 
@@ -1252,29 +1252,29 @@ The parser enlists names (and lists of names) to indicate they should not be eva
 Examples:
 
 ```q
-e: "1;.1;`n;\"c\";1 2;1. 2.;`n`o;\"chars\";"
-e,:":;v;1+2;+/1 2;{x+2y};a:1;:a+2b; /comment;\\h"
+ e: "1;.1;`n;\"c\";1 2;1. 2.;`n`o;\"chars\";"
+ e,:":;v;1+2;+/1 2;{x+2y};a:1;:a+2b; /comment;\\h"
 
-{{string: x; parsetree: `p x; type: @ `p x}}' ";"\: e
+ {{string: x; parsetree: `p x; type: @ `p x}}' ";"\: e
 string    parsetree   type
 --------- ----------- ----
-1         1           i   
-.1        0.1         f   
-`n        ,`n         N   
-"c"       "c"         c   
-1 2       1 2         I   
-1. 2.     1 2f        F   
-`n`o      ,`n`o           
-"chars"   "chars"     C   
-:         :           2   
-v         `v          n   
-1+2       (+;1;2)         
-+/1 2     ((/;+);1 2)     
-{x+2y}    {x+2y}      1   
-a:1       (::;`a;1)       
-:a+2b     :a+2b       0   
-/comment             1   
-\h        (\;`h)          
+1         1           i
+.1        0.1         f
+`n        ,`n         N
+"c"       "c"         c
+1 2       1 2         I
+1. 2.     1 2f        F
+`n`o      ,`n`o
+"chars"   "chars"     C
+:         :           2
+v         `v          n
+1+2       (+;1;2)
++/1 2     ((/;+);1 2)
+{x+2y}    {x+2y}      1
+a:1       (::;`a;1)
+:a+2b     :a+2b       0
+ /comment             1
+\h        (\;`h)
 ```
 
 #### Matrix display `` `m ``
@@ -1298,27 +1298,27 @@ Convert from with `` `x?serialdata ``.
 #### Binary `` ` ``
 
 ```q
-` "a"
+ ` "a"
 0x0161
-` `a
+ ` `a
 0x0f6100
-` 10
+ ` 10
 0x070a000000
 ```
 
 #### JSON `` `j ``
 
 ```q
-`j ({a:1;b:2};{a:"x";b:`z})
+ `j ({a:1;b:2};{a:"x";b:`z})
 "[{\"a\":1,\"b\":2},{\"a\":\"x\",\"b\":\"z\"}]"
 ```
 
 #### KSON `` `k ``
 
 ```q
-`k 2*!3
+ `k 2*!3
 "0 2 4"
-`k ({a:1;b:2};{a:"x";b:`z})
+ `k ({a:1;b:2};{a:"x";b:`z})
 "+{a:(1;\"x\");b:(2;`z)}"
 ```
 
@@ -1329,10 +1329,10 @@ Convert from with `` `x?serialdata ``.
 Use the identity function, `::`:
 
 ```q
-a:1+2  / no output
-:: a:1+2
+ a:1+2  / no output
+ :: a:1+2
 3
-@(::)
+ @(::)
 `1
 ```
 
@@ -1341,31 +1341,31 @@ a:1+2  / no output
 For characters, it's just `""`:
 
 ```q
-#""
+ #""
 0
-@""
+ @""
 `C
 ```
 
 For integers and floats, use `!`:
 
 ```q
-@!0
+ @!0
 `I
-#!0
+ #!0
 0
-@!.0
+ @!.0
 `F
-#!.0
+ #!.0
 0
 ```
 
 For other types, take 0 elements of an atom of that type (may be a better way?). For example, for names:
 
 ```q
-@0#`
+ @0#`
 `N
-#0#`
+ #0#`
 0
 ```
 
@@ -1378,7 +1378,7 @@ In the REPL, contains an empty list by default:
 ```q
 (base) chris@chris-VirtualBox:~/sheet$ k
 2019-04-28 15:03:42 2core 1gb avx2 © shakti l2.0 test
-.z.x
+ .z.x
 ()
 ```
 
@@ -1387,7 +1387,7 @@ But in a file, it lists the filename and any args after it. If `testarg.k` compr
 ```q
 (base) chris@chris-VirtualBox:~/sheet$ k testarg.k not.a.real.file
 2019-04-28 15:03:42 2core 1gb avx2 © shakti l2.0 test
-testarg.k      
+testarg.k
 not.a.real.file
 ```
 
@@ -1409,7 +1409,7 @@ So you can also use `.z.x` to identify whether a script was run in its own right
 In addition to `` `b64 ``, there's `` `b58 ``, [used](https://groups.google.com/d/msg/shaktidb/0yq21rHOacU/1wdeAGHFAAAJ) in the `` `bad `` implementation:
 
 ```q
-`b58 "helloworld"
+ `b58 "helloworld"
 "6sBRWyteSSzHrs"
 ```
 
@@ -1422,13 +1422,13 @@ One way to install shakti-python is to use [Miniconda](https://conda.io/projects
 To install Miniconda under Ubuntu 18.04:
 
 - Download the Miniconda installer for Python 3, 64-bit ([direct link](https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh))
-- In a terminal in your download directory, run:  
-`bash Miniconda3-latest-Linux-x86_64.sh` 
+- In a terminal in your download directory, run:
+`bash Miniconda3-latest-Linux-x86_64.sh`
 
-Once Miniconda is installed, open a new terminal and run:  
+Once Miniconda is installed, open a new terminal and run:
 `conda install -c shaktidb shakti-python`.
 
-Then to get to shakti-python, at the prompt, run `python`   
+Then to get to shakti-python, at the prompt, run `python`
 (or if you chose to not update your .bashrc, `~/miniconda3/bin/python`).
 
 Type `help('shakti')` at the Python prompt to view the package help.
@@ -1437,22 +1437,22 @@ Type `help('shakti')` at the Python prompt to view the package help.
 
 ```q
 (base) chris@chris-VirtualBox:~$ python
-Python 3.7.1 (default, Dec 14 2018, 19:28:38) 
+Python 3.7.1 (default, Dec 14 2018, 19:28:38)
 [GCC 7.3.0] :: Anaconda, Inc. on linux
 Type "help", "copyright", "credits" or "license" for more information.
->>>      
+>>>
 >>> import shakti
->>> 
+>>>
 >>> # Execute k commands:
 ... a = shakti.k("!3")
 >>> a
 k('!3')
->>> 
+>>>
 >>> a.  # press tab twice for auto-completion (have truncated output)
 a.append(    a.cat(       a.distinct(  a.eq(        a.first(     a.group( ...
 a.apply(     a.clear(     a.dsc(       a.eval(      a.flip(      a.iasc(  ...
 a.asc(       a.count(     a.enlist(    a.extend(    a.floor(     a.idesc( ...
->>> 
+>>>
 >>> # shakti functions and object methods can take Python objects directly:
 ... a.cat((1, 2, 3))
 k('0 1 2 1 2 3')
@@ -1470,7 +1470,7 @@ k('31')
 'eval_', 'apply', 'at', 'rand', 'find', 'cast', 'take', 'shape', 'match',
 'cat', 'drop', 'cut', 'log', 'exp', 'sin', 'cos', 'first', 'last', 'error',
 'Ø', 'ø', 'inf', 'show']
->>> 
+>>>
 >>> # Convert Python objects to k:
 ... shakti.o(range(10))
 k('!10')
@@ -1487,9 +1487,9 @@ k('2 4 6')
 >>>
 >>> # REPL: shakti.k_repl(), or just...
 ... /
-+/ 1 2 3
+ +/ 1 2 3
 6
-\\
+ \\
 >>>
 ```
 
@@ -1501,8 +1501,8 @@ shakti-python also lets you do some things that k doesn't:
 ## Communities
 
 - [shakti google group](https://groups.google.com/forum/#!forum/shaktidb) (official - for 'how to' queries)
-- [the k tree](https://chat.stackexchange.com/rooms/90748/the-k-tree)   
-write access: email `".@acegiklmnort"@7 13 12 4 4 0 10 5 10 1 5 9 2 6 8 0 3 11 9`
+- [the k tree](https://chat.stackexchange.com/rooms/90748/the-k-tree)
+  write access: email `".@acegiklmnort"@7 13 12 4 4 0 10 5 10 1 5 9 2 6 8 0 3 11 9`
 - [r/apljk](https://www.reddit.com/r/apljk/)
 
 

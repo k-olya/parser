@@ -76,10 +76,10 @@ req(url, (err, res, b) => {
                 && mdt[el.tagName.toLowerCase()](el)
                 || console.error($.html($(el)))
                 || $.html($(el)) :
-            el.type != 'comment' && el.data.trim() != '' ? esc(el.data) : ' '
+            el.type != 'comment' && el.data.trim() != '' ? esc(el.data) : ''
     // convert html and remove unnecessary whitespace
     const parse = sel =>
-        md($(sel)[0]).split('\n').map(s => s.trimLeft()).join('\n')
+        md($(sel)[0]).split('\n').map(s => s.trimRight()).join('\n')
     
     console.log(parse(sel))
 })
